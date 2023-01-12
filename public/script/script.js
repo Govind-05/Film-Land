@@ -1,6 +1,13 @@
-let menuBtn = document.getElementById("menu-logo-id");
-let menuInfo = document.getElementById("menu-info-id");
+let mon=new Date().toLocaleString('default', { month: "short" });
+let day=new Date().getDate();
 
-menuBtn.addEventListener("click", () => {
-    menuInfo.style.display = "block";
+$(".month span").text(mon);
+$(".date span").text(day);
+
+$("#menu-logo-id").click(()=>{
+    $("#menu-info-id").css("display","block");
+});
+
+$("#menu-info-id").click(()=>{
+    $("#menu-info-id").css("display","none");
 });
