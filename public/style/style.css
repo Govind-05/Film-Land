@@ -4,6 +4,7 @@
 :root{
     --bgColor:#060d17;
     --searchBgColor:#10161d;
+    --bgCardColor:#383d47;
     --listItemsColor:#979999;
     --heading:'Nunito', sans-serif;
 }
@@ -106,7 +107,7 @@ body{
 }
 
 .signin-btn:hover{
-    background-color: #383d47;
+    background-color:var(--bgCardColor) ;
     cursor:pointer;
 }
 
@@ -212,4 +213,97 @@ body{
 
 .date span{
     color: black;
+}
+
+.trending-movies-container{
+    margin-top: 3rem;
+}
+
+.going-viral-container{
+    width: 43vw;
+    margin-left: 4rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+#prev-going-viral-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#next-going-viral-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+.going-viral-card{
+    margin-right: 2rem;
+    border-radius: 12px;
+    height: 12rem;
+    width: 30vw;
+    background-color: var(--searchBgColor);
+    display: flex;
+    position: relative;
+    right: 0rem;
+    transition: all 1s;
+}
+
+.going-viral-card img{
+    height: 12rem;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.going-viral-card-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.3rem;
+    width: 15.5rem;
+}
+
+.release-info{
+    color: var(--listItemsColor);
+    margin-top: 0.8rem;
+    font-weight: 500;
+}
+
+.title-info{
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.season-info{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--listItemsColor);
+    margin-top: 0.5rem;
+}
+
+.watch-btn-info{
+    background-color: var(--listItemsColor);
+    height: 2.5rem;
+    margin-top: 2.5rem;
+    font-size: 1.2rem;
+    width: 14rem;
+    font-weight: 600;
 }
