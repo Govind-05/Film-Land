@@ -16,8 +16,26 @@
                     <% const img="https://image.tmdb.org/t/p/original"+movie.poster_path; %> 
                     <img src=<%= img %> alt="poster">
                     <div class="going-viral-card-info">
-                        <span class="release-info">2023.43min</span>
+                        <span class="release-info"><%= movie.release_date.substr(0,4) %></span>
                         <span class="title-info"><%= movie.original_title.substr(0,18) %>...</span>
+                        <button class="watch-btn-info">
+                            Watch Now
+                        </button>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="going-viral-show-container">
+            <div id="prev-going-viral-show-card"><</div>
+            <div id="next-going-viral-show-card">></div>
+            <% popularTvShows.forEach(show=>{ %>
+                <div class="going-viral-show-card">
+                    <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
+                    <img src=<%= img %> alt="poster">
+                    <div class="going-viral-show-card-info">
+                        <span class="release-info"><%= show.first_air_date.substr(0,4) %></span>
+                        <span class="title-info"><%= show.original_name.substr(0,18) %>...</span>
                         <button class="watch-btn-info">
                             Watch Now
                         </button>

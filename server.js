@@ -19,16 +19,26 @@ app.get("/",async(req,res)=>{
 
     const popularMoviesURL="https://api.themoviedb.org/3/movie/popular?api_key="+process.env.API_KEY+"&language=en-US&page=1";
 
-    const response=await axios.get(popularMoviesURL);
+    const movieResponse=await axios.get(popularMoviesURL);
 
     const popularMovies=[];
     for(let i=0;i<3;i++){
-        popularMovies.push(response.data.results[i]);
+        popularMovies.push(movieResponse.data.results[i]);
     }
 
+    const popularTvShowsURL="https://api.themoviedb.org/3/tv/popular?api_key="+process.env.API_KEY+"&language=en-US&page=1"
+    const tvResponse=await axios.get(popularTvShowsURL);
+
+    const popularTvShows=[];
+    for(let i=0;i<3;i++){
+        popularTvShows.push(tvResponse.data.results[i]);
+    }
+
+    
 
     res.render("home",{
-        popularMovies:popularMovies
+        popularMovies:popularMovies,
+        popularTvShows:popularTvShows
     });
 });
 

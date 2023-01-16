@@ -1,6 +1,7 @@
 let mon=new Date().toLocaleString('default', { month: "short" });
 let day=new Date().getDate();
-let counter=0;
+let counterMovie=0;
+let counterShow=0;
 $(".month span").text(mon);
 $(".date span").text(day);
 
@@ -23,18 +24,18 @@ $(".going-viral-container").on("mouseleave",()=>{
 });
 
 function shiftNext(){
-    let translate=counter*27 + 27;
-    if(counter<2){
+    let translate=counterMovie*27 + 27;
+    if(counterMovie<2){
         $(".going-viral-card").css("right",translate+"rem");
-        counter++;
+        counterMovie++;
     }
 }
 
 function shiftPrev(){
-    let translate=counter*27 - 27;
-    if(counter>0){
+    let translate=counterMovie*27 - 27;
+    if(counterMovie>0){
         $(".going-viral-card").css("right",+translate+"rem");
-        counter--;
+        counterMovie--;
     }
 }
 
@@ -46,3 +47,36 @@ $("#prev-going-viral-card").on("click",()=>{
     shiftPrev();
 });
 
+$(".going-viral-show-container").on("mouseenter",()=>{
+    $("#prev-going-viral-show-card").css("opacity","0.85");
+    $("#next-going-viral-show-card").css("opacity","0.85");
+});
+
+$(".going-viral-show-container").on("mouseleave",()=>{
+    $("#prev-going-viral-show-card").css("opacity","0");
+    $("#next-going-viral-show-card").css("opacity","0");
+});
+
+function shiftNextShow(){
+    let translate=counterShow*27 + 27;
+    if(counterShow<2){
+        $(".going-viral-show-card").css("right",translate+"rem");
+        counterShow++;
+    }
+}
+
+function shiftPrevShow(){
+    let translate=counterShow*27 - 27;
+    if(counterShow>0){
+        $(".going-viral-show-card").css("right",+translate+"rem");
+        counterShow--;
+    }
+}
+
+$("#next-going-viral-show-card").on("click",()=>{
+    shiftNextShow();
+});
+
+$("#prev-going-viral-show-card").on("click",()=>{
+    shiftPrevShow();
+});

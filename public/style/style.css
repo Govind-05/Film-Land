@@ -216,6 +216,7 @@ body{
 }
 
 .trending-movies-container{
+    display: flex;
     margin-top: 3rem;
 }
 
@@ -306,4 +307,65 @@ body{
     font-size: 1.2rem;
     width: 14rem;
     font-weight: 600;
+}
+
+.going-viral-show-container{
+    width: 43vw;
+    margin-left: 4rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+#prev-going-viral-show-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#next-going-viral-show-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+.going-viral-show-card{
+    margin-right: 2rem;
+    border-radius: 12px;
+    height: 12rem;
+    width: 30vw;
+    background-color: var(--searchBgColor);
+    display: flex;
+    position: relative;
+    right: 0rem;
+    transition: all 1s;
+}
+
+.going-viral-show-card img{
+    height: 12rem;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.going-viral-show-card-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.3rem;
+    width: 15.5rem;
 }
