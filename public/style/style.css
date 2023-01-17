@@ -174,6 +174,8 @@ body{
 
 /* NAVIGATION BAR ENDS HERE */
 
+/* TOP SIDERS START HERE */
+
 .calender{
     margin-top: 4rem;
     display: flex;
@@ -368,4 +370,75 @@ body{
     flex-direction: column;
     margin-left: 1.3rem;
     width: 15.5rem;
+}
+
+/* TOP SIDERS START HERE */
+
+/* TRENDING TODAY STARTS HERE */
+
+.trending-today-container{
+    width: 87rem;
+    margin: 1rem auto 0;
+}
+
+.trending-today-heading{
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.trending-today{
+    margin-top: 1rem;
+    display: flex;
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#prev-trending-today-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#next-trending-today-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:12rem ;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+/* .    width: 18.37rem; */
+
+.trending-today-card{
+    margin-right: 2rem;
+    border-radius: 12px;
+    height: 12rem;
+    background-color: var(--searchBgColor);
+    display: flex;
+    position: relative;
+    right: 0rem;
+    transition: all 1s;
+}
+
+.trending-today-card-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.3rem;
+    width: 18.37rem;
 }

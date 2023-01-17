@@ -17,7 +17,13 @@
                     <img src=<%= img %> alt="poster">
                     <div class="going-viral-card-info">
                         <span class="release-info"><%= movie.release_date.substr(0,4) %></span>
-                        <span class="title-info"><%= movie.original_title.substr(0,18) %>...</span>
+                        <span class="title-info">
+                            <% if(movie.original_title.length<=20){ %>
+                                <%= movie.original_title.substr(0,20) %>
+                            <% }else{ %>
+                                <%= movie.original_title.substr(0,20) %>... %>
+                            <% } %>
+                        </span>
                         <button class="watch-btn-info">
                             Watch Now
                         </button>
@@ -35,7 +41,54 @@
                     <img src=<%= img %> alt="poster">
                     <div class="going-viral-show-card-info">
                         <span class="release-info"><%= show.first_air_date.substr(0,4) %></span>
-                        <span class="title-info"><%= show.original_name.substr(0,18) %>...</span>
+                        <span class="title-info">
+                            <% if(show.original_name.length<=20){ %>
+                                <%= show.original_name.substr(0,20) %>
+                            <% }else{ %>
+                                <%= show.original_name.substr(0,20) %>... %>
+                            <% } %>
+                        </span>
+                        <button class="watch-btn-info">
+                            Watch Now
+                        </button>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="trending-today-container">
+        <span class="trending-today-heading">Trending Today</span>
+        <div class="trending-today">
+            <div id="prev-trending-today-card"><</div>
+            <div id="next-trending-today-card">></div>
+            <% trendingToday.forEach(show=>{ %>
+                <div class="trending-today-card">
+                    <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
+                    <img src=<%= img %> alt="poster">
+                    <div class="trending-today-card-info">
+                        <span class="release-info">
+                            <% if(show.media_type==="tv"){ %>
+                                <%= show.first_air_date.substr(0,4) %>
+                            <% }else{ %>
+                                <%= show.release_date.substr(0,4) %>
+                            <% } %>
+                        </span>
+                        <span class="title-info">
+                            <% if(show.media_type==="tv"){ %>
+                                <% if(show.original_name.length<=25){ %>
+                                    <%= show.original_name.substr(0,25) %>
+                                <% }else{ %>
+                                    <%= show.original_name.substr(0,25) %>... %>
+                                <% } %>
+                            <% }else{ %>
+                                <% if(show.original_title.length<=25){ %>
+                                    <%= show.original_title.substr(0,25) %>
+                                <% }else{ %>
+                                    <%= show.original_title.substr(0,25) %>... %>
+                                <% } %>
+                            <% } %>
+                        </span>
                         <button class="watch-btn-info">
                             Watch Now
                         </button>

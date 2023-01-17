@@ -34,11 +34,20 @@ app.get("/",async(req,res)=>{
         popularTvShows.push(tvResponse.data.results[i]);
     }
 
+    //TRENDING TODAY STARTS HERE
     
+    const trendingTodayURL="https://api.themoviedb.org/3/trending/all/day?api_key="+process.env.API_KEY+"&language=en-US";
+    const trendingTodayResponse=await axios.get(trendingTodayURL);
+
+    const trendingToday=[];
+    for(let i=0;i<10;i++){
+        trendingToday.push(trendingTodayResponse.data.results[i]);
+    }
 
     res.render("home",{
         popularMovies:popularMovies,
-        popularTvShows:popularTvShows
+        popularTvShows:popularTvShows,
+        trendingToday:trendingToday
     });
 });
 

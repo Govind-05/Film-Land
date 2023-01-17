@@ -2,6 +2,8 @@ let mon=new Date().toLocaleString('default', { month: "short" });
 let day=new Date().getDate();
 let counterMovie=0;
 let counterShow=0;
+let counterTrending=0;
+
 $(".month span").text(mon);
 $(".date span").text(day);
 
@@ -79,4 +81,40 @@ $("#next-going-viral-show-card").on("click",()=>{
 
 $("#prev-going-viral-show-card").on("click",()=>{
     shiftPrevShow();
+});
+
+// TRENDING TODAY STARTS HERE
+
+$(".trending-today-container").on("mouseenter",()=>{
+    $("#prev-trending-today-card").css("opacity","0.85");
+    $("#next-trending-today-card").css("opacity","0.85");
+});
+
+$(".trending-today-container").on("mouseleave",()=>{
+    $("#prev-trending-today-card").css("opacity","0");
+    $("#next-trending-today-card").css("opacity","0");
+});
+
+function shiftNextTrend(){
+    let translate=counterTrending*55 + 55;
+    if(counterTrending<4){
+        $(".trending-today-card").css("right",translate+"rem");
+        counterTrending++;
+    }
+}
+
+function shiftPrevTrend(){
+    let translate=counterTrending*55 - 55;
+    if(counterTrending>0){
+        $(".trending-today-card").css("right",+translate+"rem");
+        counterTrending--;
+    }
+}
+
+$("#next-trending-today-card").on("click",()=>{
+    shiftNextTrend();
+});
+
+$("#prev-trending-today-card").on("click",()=>{
+    shiftPrevTrend();
 });
