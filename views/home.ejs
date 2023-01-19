@@ -57,6 +57,8 @@
         </div>
     </div>
 
+    <!-- TRENDING TODAY CONTAINER STARTS HERE -->
+
     <div class="trending-today-container">
         <span class="trending-today-heading">Trending Today</span>
         <div class="trending-today">
@@ -76,16 +78,16 @@
                         </span>
                         <span class="title-info">
                             <% if(show.media_type==="tv"){ %>
-                                <% if(show.original_name.length<=25){ %>
-                                    <%= show.original_name.substr(0,25) %>
+                                <% if(show.original_name.length<=19){ %>
+                                    <%= show.original_name.substr(0,19) %>
                                 <% }else{ %>
-                                    <%= show.original_name.substr(0,25) %>... %>
+                                    <%= show.original_name.substr(0,19) %>... %>
                                 <% } %>
                             <% }else{ %>
-                                <% if(show.original_title.length<=25){ %>
-                                    <%= show.original_title.substr(0,25) %>
+                                <% if(show.original_title.length<=19){ %>
+                                    <%= show.original_title.substr(0,19) %>
                                 <% }else{ %>
-                                    <%= show.original_title.substr(0,25) %>... %>
+                                    <%= show.original_title.substr(0,19) %>... %>
                                 <% } %>
                             <% } %>
                         </span>
@@ -97,5 +99,54 @@
             <% }); %>
         </div>
     </div>
+
+    <!-- TRENDING TODAY CONTAINER ENDS HERE -->
+
+    <!-- GENRE 1 STARTS HERE  -->
+    <div class="genre-container genre-1-container"> 
+        <div class="genre-title genre-1-title">Top 10 in <%= genre1 %></div>
+        <div class="genre-poster-container">
+            <div id="prev-genre-1-card"><</div>
+            <div id="next-genre-1-card">></div>
+            <% genre1Shows.forEach((show,index)=>{ %>
+                <div class="genre-poster genre-1-poster">
+                    <div class="ranking"><span><%= index+1 %></span></div>
+                    <div class="genre-poster-img">
+                        <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
+                        <img src=<%= imgUrl %> alt="Poster">
+                    </div>
+                </div>
+            <% }); %>
+            
+        </div>
+    </div>
+
+    <!-- GENRE 2 STARTS HERE -->
+
+    <div class="genre-container genre-2-container"> 
+        <div class="genre-title genre-2-title">Top 10 in <%= genre2 %></div>
+        <div class="genre-poster-container">
+            <div id="prev-genre-2-card"><</div>
+            <div id="next-genre-2-card">></div>
+            <% genre2Shows.forEach((show,index)=>{ %>
+                <div class="genre-poster genre-2-poster">
+                    <div class="ranking"><span><%= index+1 %></span></div>
+                    <div class="genre-poster-img">
+                        <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
+                        <img src=<%= imgUrl %> alt="Poster">
+                    </div>
+                </div>
+            <% }); %>
+            
+        </div>
+    </div>
+
+    <div class="hello">
+        <div class="hello-img">
+            👋
+        </div>
+        <div class="hello-title">Hasta la vista, baby!</div>
+    </div>
+
 
     <%- include("partials/footer") -%>

@@ -3,6 +3,8 @@ let day=new Date().getDate();
 let counterMovie=0;
 let counterShow=0;
 let counterTrending=0;
+let counterGenre1=0;
+let counterGenre2=0;
 
 $(".month span").text(mon);
 $(".date span").text(day);
@@ -117,4 +119,78 @@ $("#next-trending-today-card").on("click",()=>{
 
 $("#prev-trending-today-card").on("click",()=>{
     shiftPrevTrend();
+});
+
+// TRENDING TODAY STARTS HERE
+
+//GENRE-1 CARDS STARTS HERE
+
+$(".genre-1-container").on("mouseenter",()=>{
+    $("#prev-genre-1-card").css("opacity","0.85");
+    $("#next-genre-1-card").css("opacity","0.85");
+});
+
+$(".genre-1-container").on("mouseleave",()=>{
+    $("#prev-genre-1-card").css("opacity","0");
+    $("#next-genre-1-card").css("opacity","0");
+});
+
+function shiftNextGenre1(){
+    let translate=counterGenre1*50 + 50;
+    if(counterGenre1<3){
+        $(".genre-1-poster").css("right",translate+"rem");
+        counterGenre1++;
+    }
+}
+
+function shiftPrevGenre1(){
+    let translate=counterGenre1*50 - 50;
+    if(counterGenre1>0){
+        $(".genre-1-poster").css("right",translate+"rem");
+        counterGenre1--;
+    }
+}
+
+$("#next-genre-1-card").on("click",()=>{
+    shiftNextGenre1();
+});
+
+$("#prev-genre-1-card").on("click",()=>{
+    shiftPrevGenre1();
+});
+
+//GENRE-2 CARDS STARTS HERE
+
+$(".genre-2-container").on("mouseenter",()=>{
+    $("#prev-genre-2-card").css("opacity","0.85");
+    $("#next-genre-2-card").css("opacity","0.85");
+});
+
+$(".genre-2-container").on("mouseleave",()=>{
+    $("#prev-genre-2-card").css("opacity","0");
+    $("#next-genre-2-card").css("opacity","0");
+});
+
+function shiftNextGenre2(){
+    let translate=counterGenre2*50 + 50;
+    if(counterGenre2<3){
+        $(".genre-2-poster").css("right",translate+"rem");
+        counterGenre2++;
+    }
+}
+
+function shiftPrevGenre2(){
+    let translate=counterGenre2*50 - 50;
+    if(counterGenre2>0){
+        $(".genre-2-poster").css("right",translate+"rem");
+        counterGenre2--;
+    }
+}
+
+$("#next-genre-2-card").on("click",()=>{
+    shiftNextGenre2();
+});
+
+$("#prev-genre-2-card").on("click",()=>{
+    shiftPrevGenre2();
 });

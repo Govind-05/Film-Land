@@ -32,6 +32,7 @@ body{
     display: flex;
     align-items: center;
     height: 3.5rem;
+    z-index: 9999;
 }
 
 .logo{
@@ -126,6 +127,7 @@ body{
     top: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 99999;
 
 }
 
@@ -378,7 +380,7 @@ body{
 
 .trending-today-container{
     width: 87rem;
-    margin: 1rem auto 0;
+    margin: 2rem auto 0;
 }
 
 .trending-today-heading{
@@ -423,8 +425,6 @@ body{
     z-index: 999;
 }
 
-/* .    width: 18.37rem; */
-
 .trending-today-card{
     margin-right: 2rem;
     border-radius: 12px;
@@ -442,3 +442,141 @@ body{
     margin-left: 1.3rem;
     width: 18.37rem;
 }
+
+/* TRENDING TODAY ENDS HERE */
+
+/* GENRE TITLES STARTS HERE */
+
+.genre-container{
+    width: 91.5%;
+    overflow: hidden;
+    margin: 2rem auto 0;
+}
+
+.genre-title{
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.genre-poster-container{
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+}
+
+.genre-poster{
+    display: flex;
+    align-items: flex-end;
+}
+
+.ranking{
+    z-index: -1;
+}
+
+.ranking span{
+    display: inline-block;
+    height: 12rem;
+    font-size: 11rem;
+    color: var(--bgCardColor);
+}
+
+.genre-poster-img{
+    margin-right: 2rem;
+}
+
+.genre-poster-img img{
+    width: 11rem;
+    position: relative;
+    right: 1.2rem;
+}
+
+.genre-1-poster{
+    position: relative;
+    right: 0rem;
+    transition: all 1s;
+}
+
+#next-genre-1-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:100%;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#prev-genre-1-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:100%;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#next-genre-2-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:100%;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#prev-genre-2-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:100%;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+.genre-2-poster{
+    position: relative;
+    right: 0rem;
+    transition: all 1s;
+}
+
+/* GENRE TITLES ENDS HERE */
+
+/* HELLO GREETINGS STARTS HERE */
+
+.hello{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.hello-img{
+    font-size: 7rem;
+}
+
+.hello-title{
+    font-family: var(--heading);
+    font-size: 3rem;
+}
+
+/* HELLO GREETINGS ENDS HERE */
