@@ -533,7 +533,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.85;
+    opacity: 0;
     font-size: 2.5rem;
     z-index: 999;
 }
@@ -547,7 +547,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.85;
+    opacity: 0;
     font-size: 2.5rem;
     z-index: 999;
 }
@@ -571,12 +571,31 @@ body{
 }
 
 .hello-img{
-    font-size: 7rem;
+    font-size: 5rem;
 }
 
 .hello-title{
     font-family: var(--heading);
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 /* HELLO GREETINGS ENDS HERE */
+
+/* FOOTER */
+
+.footer-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-contact a{
+    text-decoration: none;
+}
+
+.footer-contact a:hover{
+    color: aqua;
+}

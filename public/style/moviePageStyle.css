@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+:root{
+    --bgColor:#060d17;
+    --searchBgColor:#10161d;
+    --bgCardColor:#383d47;
+    --listItemsColor:#979999;
+    --heading:'Nunito', sans-serif;
+}
+
+.background-img-container{
+    margin-top: 3.5rem;
+    z-index: -1;
+}
+
+.background-img-container img{
+    width: 100%;
+    opacity: 0.1;
+    height: 80rem;
+}
+
+.movie-info-container{
+    display: flex;
+    margin: 0 auto 0;
+    position: absolute;
+    width: 80%;
+    background-color: var(--bgColor);
+    top: 15.5rem;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 2rem;
+}
+
+.short-movie-info{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-info-poster img{
+    width: 90%;
+    position: relative;
+    left: 50%;
+    translate: -50%;
+    border-radius: 14px;
+    margin-top: 1.5rem;
+}
+
+.horizontal-row{
+    width: 24rem;
+    height: 2.5px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--bgCardColor);
+}
+
+.general-info{
+    display: flex;
+    position: relative;
+    left: -45px;
+    margin-top: 1rem;
+}
+
+.info-heading{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-right: 2rem;
+}
+
+.info-heading span{
+    margin-bottom: 0.5rem;
+    color: var(--bgCardColor);
+}
+
+.info-details{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.info-details span{
+    margin-bottom: 0.5rem;
+    color: var(--listItemsColor);
+}
+
+/* SHORT MOVIE DETAILS ENDS HERE */
+
+.detailed-movie-info{
+    margin-left: 1.5rem;
+    padding-right: 1rem;
+}
+
+.movie-title{
+    margin-top: 2rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.movie-title span{
+    font-size: 1.2rem;
+    color: var(--listItemsColor);
+}
+
+.trailer{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: var(--bgCardColor);
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+}
+
+.trailer iframe{
+    width: 785px;
+    border-radius: 0.8rem;
+}
+
+.synopsis{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.synopsis-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.synopsis-info{
+    font-size: 1.2rem;
+    color: var(--listItemsColor);
+}
+
+.recommendation-title{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.recommendation-container{
+    margin-top: 0.8rem;
+    width: 49.5rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.recommendation-poster {
+    position: relative;
+    right: 0;
+    transition: all 1s;
+}
+
+.recommendation-poster img{
+    width: 10rem;
+    margin-right: 2rem;
+}
+
+#next-recommended-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:98%;
+    right: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}
+
+#prev-recommended-card{
+    position: absolute;
+    background-color: var(--bgColor);
+    height:98%;
+    left: 0px;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    font-size: 2.5rem;
+    z-index: 999;
+}

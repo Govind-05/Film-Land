@@ -92,6 +92,10 @@ app.get("/",async(req,res)=>{
     });
 });
 
+app.get("/movies/movie",async (req,res)=>{
+    res.render("moviePage");
+});
+
 app.listen(3000,()=>{
     console.log("Server is listening on port 3000.");
 });
