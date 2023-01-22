@@ -60,8 +60,9 @@
 .general-info{
     display: flex;
     position: relative;
-    left: -45px;
+    left: 6px;
     margin-top: 1rem;
+    width: 23rem;
 }
 
 .info-heading{

@@ -194,3 +194,10 @@ $("#next-genre-2-card").on("click",()=>{
 $("#prev-genre-2-card").on("click",()=>{
     shiftPrevGenre2();
 });
+
+function submit1(index){
+    document.getElementById("genre1Form-"+index).submit();
+}
+function submit2(index){
+    document.getElementById("genre2Form-"+index).submit();
+}

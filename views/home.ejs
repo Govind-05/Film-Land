@@ -12,23 +12,25 @@
             <div id="prev-going-viral-card"><</div>
             <div id="next-going-viral-card">></div>
             <% popularMovies.forEach(movie=>{ %>
-                <div class="going-viral-card">
-                    <% const img="https://image.tmdb.org/t/p/original"+movie.poster_path; %> 
-                    <img src=<%= img %> alt="poster">
-                    <div class="going-viral-card-info">
-                        <span class="release-info"><%= movie.release_date.substr(0,4) %></span>
-                        <span class="title-info">
-                            <% if(movie.original_title.length<=20){ %>
-                                <%= movie.original_title.substr(0,20) %>
-                            <% }else{ %>
-                                <%= movie.original_title.substr(0,20) %>... %>
-                            <% } %>
-                        </span>
-                        <button class="watch-btn-info">
-                            Watch Now
-                        </button>
+                <form action="/movie/<%=movie.id%>" method="POST">
+                    <div class="going-viral-card">
+                        <% const img="https://image.tmdb.org/t/p/original"+movie.poster_path; %> 
+                        <img src=<%= img %> alt="poster">
+                        <div class="going-viral-card-info">
+                            <span class="release-info"><%= movie.release_date.substr(0,4) %></span>
+                            <span class="title-info">
+                                <% if(movie.original_title.length<=20){ %>
+                                    <%= movie.original_title.substr(0,20) %>
+                                <% }else{ %>
+                                    <%= movie.original_title.substr(0,20) %>... %>
+                                <% } %>
+                            </span>
+                            <button type="submit" class="watch-btn-info">
+                                Watch Now
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             <% }); %>
         </div>
 
@@ -36,23 +38,25 @@
             <div id="prev-going-viral-show-card"><</div>
             <div id="next-going-viral-show-card">></div>
             <% popularTvShows.forEach(show=>{ %>
-                <div class="going-viral-show-card">
-                    <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
-                    <img src=<%= img %> alt="poster">
-                    <div class="going-viral-show-card-info">
-                        <span class="release-info"><%= show.first_air_date.substr(0,4) %></span>
-                        <span class="title-info">
-                            <% if(show.original_name.length<=20){ %>
-                                <%= show.original_name.substr(0,20) %>
-                            <% }else{ %>
-                                <%= show.original_name.substr(0,20) %>... %>
-                            <% } %>
-                        </span>
-                        <button class="watch-btn-info">
-                            Watch Now
-                        </button>
+                <form action="/show/<%=show.id%>" method="POST">
+                    <div class="going-viral-show-card">
+                        <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
+                        <img src=<%= img %> alt="poster">
+                        <div class="going-viral-show-card-info">
+                            <span class="release-info"><%= show.first_air_date.substr(0,4) %></span>
+                            <span class="title-info">
+                                <% if(show.original_name.length<=20){ %>
+                                    <%= show.original_name.substr(0,20) %>
+                                <% }else{ %>
+                                    <%= show.original_name.substr(0,20) %>... %>
+                                <% } %>
+                            </span>
+                            <button class="watch-btn-info">
+                                Watch Now
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             <% }); %>
         </div>
     </div>
@@ -65,37 +69,45 @@
             <div id="prev-trending-today-card"><</div>
             <div id="next-trending-today-card">></div>
             <% trendingToday.forEach(show=>{ %>
-                <div class="trending-today-card">
-                    <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
-                    <img src=<%= img %> alt="poster">
-                    <div class="trending-today-card-info">
-                        <span class="release-info">
-                            <% if(show.media_type==="tv"){ %>
-                                <%= show.first_air_date.substr(0,4) %>
-                            <% }else{ %>
-                                <%= show.release_date.substr(0,4) %>
-                            <% } %>
-                        </span>
-                        <span class="title-info">
-                            <% if(show.media_type==="tv"){ %>
-                                <% if(show.original_name.length<=19){ %>
-                                    <%= show.original_name.substr(0,19) %>
+                <% let redirectURL; %>
+                <% if(show.media_type==="tv"){ %>
+                    <% redirectURL="/show/"+show.id; %>
+                <% }else{ %>
+                    <% redirectURL="/movie/"+show.id; %>
+                <% } %>
+                <form action="<%=redirectURL%>" method="POST">
+                    <div class="trending-today-card">
+                        <% const img="https://image.tmdb.org/t/p/original"+show.poster_path; %> 
+                        <img src=<%= img %> alt="poster">
+                        <div class="trending-today-card-info">
+                            <span class="release-info">
+                                <% if(show.media_type==="tv"){ %>
+                                    <%= show.first_air_date.substr(0,4) %>
                                 <% }else{ %>
-                                    <%= show.original_name.substr(0,19) %>... %>
+                                    <%= show.release_date.substr(0,4) %>
                                 <% } %>
-                            <% }else{ %>
-                                <% if(show.original_title.length<=19){ %>
-                                    <%= show.original_title.substr(0,19) %>
+                            </span>
+                            <span class="title-info">
+                                <% if(show.media_type==="tv"){ %>
+                                    <% if(show.original_name.length<=19){ %>
+                                        <%= show.original_name.substr(0,19) %>
+                                    <% }else{ %>
+                                        <%= show.original_name.substr(0,19) %>... %>
+                                    <% } %>
                                 <% }else{ %>
-                                    <%= show.original_title.substr(0,19) %>... %>
+                                    <% if(show.original_title.length<=19){ %>
+                                        <%= show.original_title.substr(0,19) %>
+                                    <% }else{ %>
+                                        <%= show.original_title.substr(0,19) %>... %>
+                                    <% } %>
                                 <% } %>
-                            <% } %>
-                        </span>
-                        <button class="watch-btn-info">
-                            Watch Now
-                        </button>
+                            </span>
+                            <button type="submit" class="watch-btn-info">
+                                Watch Now
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             <% }); %>
         </div>
     </div>
@@ -109,13 +121,21 @@
             <div id="prev-genre-1-card"><</div>
             <div id="next-genre-1-card">></div>
             <% genre1Shows.forEach((show,index)=>{ %>
-                <div class="genre-poster genre-1-poster">
-                    <div class="ranking"><span><%= index+1 %></span></div>
-                    <div class="genre-poster-img">
-                        <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
-                        <img src=<%= imgUrl %> alt="Poster">
+                <% let redirectURL; %>
+                <% if(show.media_type==="tv"){ %>
+                    <% redirectURL="/show/"+show.id; %>
+                <% }else{ %>
+                    <% redirectURL="/movie/"+show.id; %>
+                <% } %>
+                <form id="genre1Form-<%=index%>" action="<%=redirectURL%>" method="POST">
+                    <div class="genre-poster genre-1-poster">
+                        <div class="ranking"><span><%= index+1 %></span></div>
+                        <div class="genre-poster-img" onclick="submit1(<%=index%>)">
+                            <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
+                            <img src=<%= imgUrl %> alt="Poster">
+                        </div>
                     </div>
-                </div>
+                </form>
             <% }); %>
             
         </div>
@@ -129,13 +149,22 @@
             <div id="prev-genre-2-card"><</div>
             <div id="next-genre-2-card">></div>
             <% genre2Shows.forEach((show,index)=>{ %>
-                <div class="genre-poster genre-2-poster">
-                    <div class="ranking"><span><%= index+1 %></span></div>
-                    <div class="genre-poster-img">
-                        <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
-                        <img src=<%= imgUrl %> alt="Poster">
-                    </div>
-                </div>
+                    <% let redirectURL; %>
+                    <% if(show.media_type==="tv"){ %>
+                        <% redirectURL="/show/"+show.id; %>
+                    <% }else{ %>
+                        <% redirectURL="/movie/"+show.id; %>
+                    <% } %>
+                    <form id="genre2Form-<%=index%>" action="<%=redirectURL%>" method="POST">
+                        <div class="genre-poster genre-2-poster">
+                            <div class="ranking"><span><%= index+1 %></span></div>
+                            <div class="genre-poster-img" onclick="submit2(<%=index%>)">
+                                <% const imgUrl="https://image.tmdb.org/t/p/original"+show.poster_path; %>
+                                <img src=<%= imgUrl %> alt="Poster">
+                            </div>
+                        </div>
+                    </form>
+
             <% }); %>
             
         </div>

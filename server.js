@@ -92,8 +92,36 @@ app.get("/",async(req,res)=>{
     });
 });
 
-app.get("/movies/movie",async (req,res)=>{
-    res.render("moviePage");
+app.get("/movie/:movieId",async (req,res)=>{
+    const movieId=req.params.movieId;
+    const movieURL="https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+process.env.API_KEY+"&language=en-US&append_to_response=videos,recommendations";
+    
+    const movieResponse=await axios.get(movieURL);
+
+    res.render("moviePage",{
+        movie:movieResponse.data,
+        media:"movie"
+    });
+});
+
+app.post("/movie/:movieId",(req,res)=>{
+    res.redirect("/movie/"+req.params.movieId);
+});
+
+app.get("/show/:showId",async (req,res)=>{
+    const showId=req.params.showId;
+    const showURL="https://api.themoviedb.org/3/tv/"+showId+"?api_key="+process.env.API_KEY+"&language=en-US&append_to_response=videos,recommendations";
+    
+    const showResponse=await axios.get(showURL);
+
+    res.render("moviePage",{
+        movie:showResponse.data,
+        media:"tv"
+    });
+});
+
+app.post("/show/:showId",(req,res)=>{
+    res.redirect("/show/"+req.params.showId);
 });
 
 app.listen(3000,()=>{
