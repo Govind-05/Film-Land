@@ -12,7 +12,7 @@ $(".recommendation-container").on("mouseleave",()=>{
 
 function shiftNextRecommendation(){
     let translate=counterRecommended*45 + 45;
-    if(counterRecommended<2){
+    if(counterRecommended<(($(".recommendation-poster").length)/4 - 1)){
         $(".recommendation-poster").css("right",translate+"rem");
         counterRecommended++;
     }
@@ -33,3 +33,7 @@ $("#next-recommended-card").on("click",()=>{
 $("#prev-recommended-card").on("click",()=>{
     shiftPrevRecommendation();
 });
+
+function submitRecommendation(index){
+    document.getElementById("recommendation-"+index).submit();
+}

@@ -120,8 +120,35 @@ app.get("/show/:showId",async (req,res)=>{
     });
 });
 
+app.get("/search/:showQuery",async (req,res)=>{
+
+    const query=req.params.showQuery;
+    const searchURL="https://api.themoviedb.org/3/search/multi?api_key="+process.env.API_KEY+"&language=en-US&query="+query+"&page=1&include_adult=true";
+
+    const searchResponse=await axios.get(searchURL);
+
+    const searchResult=[];
+    if(searchResponse.data.results.length!=0){
+        for(let i=0;i<10;i++){
+            searchResult.push(searchResponse.data.results[i]);
+        }
+    }
+
+    res.render("search",{
+        searchShows:searchResult
+    });
+});
+
 app.post("/show/:showId",(req,res)=>{
     res.redirect("/show/"+req.params.showId);
+});
+
+app.post("/",(req,res)=>{
+    res.redirect("/");
+});
+
+app.post("/search",(req,res)=>{
+    res.redirect("/search/"+req.body.search);
 });
 
 app.listen(3000,()=>{

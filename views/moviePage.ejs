@@ -71,9 +71,15 @@
             </div>
 
             <div class="trailer">
-                Watch Trailer Now:
-                <% const vidSource="https://www.youtube.com/embed/"+movie.videos.results[0].key; %>
-                <iframe width="660" height="415" src=<%= vidSource %> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <% if(movie.videos.results.length===0){ %>
+                    <div class="trailer-box">
+                        <span>NO TRAILER FOUND</span>
+                    </div>
+                <% }else{ %>
+                    Watch Trailer Now:
+                    <% const vidSource="https://www.youtube.com/embed/"+movie.videos.results[0].key; %>
+                    <iframe width="660" height="415" src=<%= vidSource %> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <% } %>
             </div>
 
             <div class="synopsis">
@@ -91,18 +97,35 @@
                 <div id="prev-recommended-card"><</div>
                 <div id="next-recommended-card">></div>
                 <% for(let i=0;i<10;i++){ %>
-                    <div class="recommendation-poster">
-                        <% if(movie.recommendations.results.length===0){ %>
-                            <% let imgSrc="https://image.tmdb.org/t/p/original"+movie.poster_path; %>
-                            <img src=<%= imgSrc %> alt="Poster">
+                    <% let recommendURL; %>
+                    <% if(movie.recommendations.results.length===0){ %>
+                        <% recommendURL="/"; %>
+                    <% }else{ %>
+                        <% if(movie.recommendations.results[i].media_type==="tv"){ %>
+                            <% recommendURL="/show/"+movie.recommendations.results[i].id; %>
                         <% }else{ %>
-                            <% imgSrc="https://image.tmdb.org/t/p/original"+movie.recommendations.results[i].poster_path; %>
-                            <img src=<%= imgSrc %> alt="Poster">
+                            <% recommendURL="/movie/"+movie.recommendations.results[i].id; %>
                         <% } %>
-                    </div>
+                    <% } %>
+                    <form action="<%=recommendURL%>" method="POST" id="recommendation-<%=i%>">
+                        <div class="recommendation-poster" onclick=submitRecommendation(<%= i %>)>
+                            <% if(movie.recommendations.results.length===0){ %>
+                                <% let imgSrc="https://image.tmdb.org/t/p/original"+movie.poster_path; %>
+                                <img src=<%= imgSrc %> alt="Poster">
+                            <% }else{ %>
+                                <% imgSrc="https://image.tmdb.org/t/p/original"+movie.recommendations.results[i].poster_path; %>
+                                <img src=<%= imgSrc %> alt="Poster">
+                                <% } %>
+                                    
+                            <% if(i===movie.recommendations.results.length-1){ %>
+                                <% break; %>
+                            <% } %>
+                        </div>
+                    </form>
                 <% } %>
             </div>
         </div>
     </div>
-
+    </div>
+    
 <%- include("partials/footer") -%>

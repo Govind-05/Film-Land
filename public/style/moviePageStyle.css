@@ -116,6 +116,19 @@
     flex-direction: column;
 }
 
+.trailer-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    width:660px ;
+    height:415px ;
+}
+
+.trailer-box span{
+    color: var(--listItemsColor);
+}
+
 .trailer iframe{
     width: 785px;
     border-radius: 0.8rem;

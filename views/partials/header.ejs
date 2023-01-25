@@ -7,6 +7,7 @@
     <title>FilmLand</title>
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/moviePageStyle.css">
+    <link rel="stylesheet" href="/style/searchPageStyle.css">
 </head>
 <body>
     <nav class="navbar">
@@ -19,8 +20,8 @@
             <li class="list-items"><a href="#">New</a></li>
             <li class="list-items"><a href="#">Popular</a></li>
         </ul>
-        <form class="search-bar">
-            <input type="text" placeholder="Search for movies or TV shows">
+        <form class="search-bar" action="/search" method="POST">
+            <input type="text" placeholder="Search for movies or TV shows" name="search" autocomplete="off">
         </form>
         <form>
             <button type="submit" class="signin-btn">Sign In</button>

@@ -1,0 +1,36 @@
+<%- include("partials/header") -%>
+
+    <div class="shows-container">
+
+        <% if(searchShows.length===0){ %>
+            <div class="no-search">
+                NO MATCHING RESULT FOUND
+            </div>
+        <% }else{ %>
+            <% searchShows.forEach((show,index)=>{ %>
+                <% let searchURL; %>
+                <% if(show.media_type==="tv"){ %>
+                    <% searchURL="/show/"+show.id; %>
+                <% }else{ %>
+                    <% searchURL="/movie/"+show.id; %>
+                <% } %>
+                <form action="<%= searchURL %>" method="POST" id="searchForm-<%=index%>">
+                    <div class="show-cover" onclick="submitSearch(<%= index %>)">
+                        <% const imgSrc="https://image.tmdb.org/t/p/original"+show.poster_path; %>
+                        <img src=<%= imgSrc %> alt="Poster">
+                        <% let title; %>
+                        <% if(show.media_type==="tv"){ %>
+                            <% title=show.original_name; %>
+                        <% }else{ %>
+                            <% title=show.original_title; %>
+                        <% } %>
+                        <span><%= title %></span>
+                    </div>
+                </form>
+            <% }) %>
+        <% } %>
+
+        
+    </div>
+
+<%- include("partials/footer") -%>
