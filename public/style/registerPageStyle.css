@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+:root{
+    --bgColor:#060d17;
+    --searchBgColor:#10161d;
+    --bgCardColor:#383d47;
+    --listItemsColor:#979999;
+    --heading:'Nunito', sans-serif;
+}
+
+.signUp-box-container{
+    margin-top: 3.5rem;
+    width: 100%;
+    height: 37rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUp-box{
+    padding-top: 1.5rem;
+    background-color: var(--bgCardColor);
+    height: 27rem;
+    width: 22rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    
+}
+
+.signUp-box span{
+    color: var(--bgColor);
+    font-size: 2rem;
+    font-weight: 900;
+    font-family: var(--heading);
+    margin-bottom: 0.5rem;
+}
+
+.signUp-box input{
+    color: var(--listItemsColor);
+}
+
+#register-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-box{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register:hover{
+    background-color: var(--bgColor);
+    color: var(--listItemsColor);
+    border-radius: 1rem;
+    width: 13rem;
+    text-align: center;
+}
+
+.signUp-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.signUp-form input{
+    outline: none;
+    border: none;
+    height: 2rem;
+    width: 20rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--listItemsColor);
+    padding-left: 2.8rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.username-input{
+    background: url("../images/username_logo.png") no-repeat 1.5% center ;
+    background-size: 1.8rem;
+    background-color: var(--bgColor);
+}
+.email-input{
+    background: url("../images/email-icon.png") no-repeat 1.5% center ;
+    background-size: 1.8rem;
+    background-color: var(--bgColor);
+}
+.password-input{
+    background: url("../images/password-icon.png") no-repeat 1.5% center ;
+    background-size: 1.8rem;
+    background-color: var(--bgColor);
+}
+
+.signUp-form button{
+    width: 11rem;
+    height: 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: black;
+    border: none;
+    border-radius: 2rem;
+    display: block;
+    margin: 1rem auto;
+    background-color: aquamarine;
+}
+
+.signUp-form button:hover{
+    cursor: pointer;
+}
+
+.already-account span{
+    font-size: 1rem;
+}
+
+.already-account span:nth-child(2){
+    color: aquamarine;
+}
+
+.already-account span:nth-child(2):hover{
+    cursor: pointer;
+}

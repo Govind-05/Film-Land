@@ -1,0 +1,35 @@
+<%- include("partials/header") -%>
+
+    <div class="signUp-box-container">
+        <div class="signUp-box">
+            <div id="register-box">
+                <span class="register">Register Now</span>
+                <form class="signUp-form" action="/register" method="POST" id="register-form">
+                    <input class="username-input" type="text" placeholder="UserName" name="username">
+                    <input class="email-input" type="email" placeholder="Email" name="email">
+                    <input class="password-input" type="password" placeholder="Password" name="password" id="password">
+                    <input class="password-input" type="password" placeholder="Confirm Password" name="confirm-password" id="confirm-password">
+                    <button onclick="submitRegisterForm()" type="button">SUBMIT</button>
+                </form>
+                <div class="already-account">
+                    <span>Already have an Account? </span>
+                    <span class="login-btn">Login</span>
+                </div>
+            </div>
+
+            <div id="login-box">
+                <span class="register">Login Now</span>
+                <form class="signUp-form" action="/login" method="POST" id="login-form">
+                    <input class="username-input" type="text" placeholder="UserName" name="username">
+                    <input class="password-input" type="password" placeholder="Password" name="password">
+                    <button onclick="submitLoginForm()" type="button">SUBMIT</button>
+                </form>
+                <div class="already-account">
+                    <span>Don't have an Account? </span>
+                    <span class="register-btn">Register</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include("partials/footer") -%>

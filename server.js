@@ -6,6 +6,10 @@ import ejs from "ejs";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from "axios";
+import mongoose from 'mongoose';
+import session from 'express-session';
+import passport from 'passport';
+import passportLocalMongoose from "passport-local-mongoose";
 
 const app=express();
 const __filename = fileURLToPath(import.meta.url);
@@ -15,8 +19,52 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname+"/public"));
 app.set("view engine","ejs")
 
-app.get("/",async(req,res)=>{
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+mongoose.set('strictQuery', true);
+mongoose.connect("mongodb://localhost:27017/filmUserDB", { useNewUrlParser: true });
+
+const userSchema=new mongoose.Schema({
+    username:String,
+    email:String,
+    film:[{
+        media:String,
+        filmId:String
+    }]
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User=new mongoose.model("User",userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(function (user, cb) {
+    process.nextTick(function () {
+        return cb(null, {
+            id: user.id,
+            username: user.username,
+            picture: user.picture
+        });
+    });
+});
+
+passport.deserializeUser(function (user, cb) {
+    process.nextTick(function () {
+        return cb(null, user);
+    });
+});
+
+app.get("/",async(req,res)=>{
+    
     const popularMoviesURL="https://api.themoviedb.org/3/movie/popular?api_key="+process.env.API_KEY+"&language=en-US&page=1";
 
     const movieResponse=await axios.get(popularMoviesURL);
@@ -81,6 +129,13 @@ app.get("/",async(req,res)=>{
         genre2Shows.push(genre2Response.data.results[i]);
     }
 
+    let auth=false;
+    if(req.isAuthenticated()){
+        auth=true;
+    }else{
+        auth=false;
+    }
+
     res.render("home",{
         popularMovies:popularMovies,
         popularTvShows:popularTvShows,
@@ -88,7 +143,8 @@ app.get("/",async(req,res)=>{
         genre1:genre_1.name,
         genre1Shows:genre1Shows,
         genre2:genre_2.name,
-        genre2Shows:genre2Shows
+        genre2Shows:genre2Shows,
+        auth:auth
     });
 });
 
@@ -98,15 +154,20 @@ app.get("/movie/:movieId",async (req,res)=>{
     
     const movieResponse=await axios.get(movieURL);
 
+    let auth=false;
+    if(req.isAuthenticated()){
+        auth=true;
+    }else{
+        auth=false;
+    }
+
     res.render("moviePage",{
         movie:movieResponse.data,
-        media:"movie"
+        media:"movie",
+        auth:auth
     });
 });
 
-app.post("/movie/:movieId",(req,res)=>{
-    res.redirect("/movie/"+req.params.movieId);
-});
 
 app.get("/show/:showId",async (req,res)=>{
     const showId=req.params.showId;
@@ -114,9 +175,17 @@ app.get("/show/:showId",async (req,res)=>{
     
     const showResponse=await axios.get(showURL);
 
+    let auth=false;
+    if(req.isAuthenticated()){
+        auth=true;
+    }else{
+        auth=false;
+    }
+
     res.render("moviePage",{
         movie:showResponse.data,
-        media:"tv"
+        media:"tv",
+        auth:auth
     });
 });
 
@@ -134,9 +203,43 @@ app.get("/search/:showQuery",async (req,res)=>{
         }
     }
 
+    let auth=false;
+    if(req.isAuthenticated()){
+        auth=true;
+    }else{
+        auth=false;
+    }
+
     res.render("search",{
-        searchShows:searchResult
+        searchShows:searchResult,
+        auth:auth
     });
+});
+
+app.get("/signIn",(req,res)=>{
+
+    let auth=false;
+    if(req.isAuthenticated()){
+        auth=true;
+    }else{
+        auth=false;
+    }
+
+    res.render("register",{
+        auth:auth
+    });
+});
+
+app.get("/done",(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render("done");
+    }else{
+        res.redirect("/signIn");
+    }
+});
+
+app.post("/movie/:movieId",(req,res)=>{
+    res.redirect("/movie/"+req.params.movieId);
 });
 
 app.post("/show/:showId",(req,res)=>{
@@ -149,6 +252,87 @@ app.post("/",(req,res)=>{
 
 app.post("/search",(req,res)=>{
     res.redirect("/search/"+req.body.search);
+});
+
+app.post("/favourite",(req,res)=>{
+    console.log(req.body);
+    console.log(req.user.id);
+    let filmObj={
+        media:req.body.media,
+        filmId:req.body.filmId
+    }
+
+    User.find({"film.filmId":req.body.filmId,"_id":req.user.id},(err,user)=>{
+        if(err){
+            console.log(err);
+        }else{
+            if(user){
+                if(user.length===0){
+                    User.findOneAndUpdate({_id:req.user.id},
+                        {$push:{ film: filmObj} },(err)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                    });
+                }
+            }else{
+                console.log("No user Found");
+            }
+        }
+    });
+    
+
+
+
+});
+
+app.post("/signIn",(req,res)=>{
+    res.redirect("/signIn");
+});
+
+app.post("/register",(req,res)=>{
+
+    User.register({username:req.body.username,email:req.body.email}, req.body.password, (err,user)=>{
+        if(err){
+            console.log(err);
+            res.redirect("/signIn");
+        }else{
+            passport.authenticate("local")(req,res,()=>{
+                res.redirect("/done");
+            });
+        }
+    });
+
+});
+
+app.post("/login",(req,res)=>{
+
+    const user=new User({
+        username:req.body.username,
+        password:req.body.password
+    });
+
+    req.login(user,err=>{
+        if(err){
+            console.log(err);
+            res.redirect("/signIn");
+        }else{
+            passport.authenticate("local", { failureRedirect: '/signIn', failureMessage: true })(req,res,()=>{
+                res.redirect("/done");
+            });
+        }
+    });
+
+});
+
+app.post("/logOut",(req,res)=>{
+    req.logout(err=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect("/");
+        }
+    });
 });
 
 app.listen(3000,()=>{

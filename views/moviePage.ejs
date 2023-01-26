@@ -50,6 +50,20 @@
                     </span>
                 </div>
             </div>
+            <div class="favourite-btn-container">
+
+                <% if(auth){ %>
+                    <form action="/favourite" method="POST">
+                        <input type="hidden" name="media" value="<%= media %>">
+                        <input type="hidden" name="filmId" value="<%= movie.id %>">
+                        <button type="submit" class="favourite-btn">Add To Your Favourites</button>
+                    </form>
+                <% }else{ %>
+                    <form action="/signIn" method="POST">
+                        <button type="submit" class="favourite-btn">Add To Your Favourites</button>
+                    </form>
+                <% } %>
+            </div>
         </div>
 
 

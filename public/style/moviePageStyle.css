@@ -89,6 +89,22 @@
     color: var(--listItemsColor);
 }
 
+.favourite-btn{
+    background-color: aquamarine;
+    color: black;
+    margin-top: 2rem;
+    width: 17rem;
+    font-size: 1.2rem;
+    font-weight: 900;
+    border-radius: 2rem;
+    height: 3rem;
+}
+
+.favourite-btn:hover{
+    cursor: pointer;
+    background-color: rgb(117, 233, 194);
+}
+
 /* SHORT MOVIE DETAILS ENDS HERE */
 
 .detailed-movie-info{
