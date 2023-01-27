@@ -331,6 +331,10 @@ body{
     font-weight: 600;
 }
 
+.watch-btn-info:hover{
+    cursor: pointer;
+}
+
 .going-viral-show-container{
     width: 43vw;
     margin-left: 4rem;
@@ -480,6 +484,10 @@ body{
     position: relative;
     margin-top: 1rem;
     display: flex;
+}
+
+.genre-poster-container:hover{
+    cursor: pointer;
 }
 
 .genre-poster{

@@ -238,6 +238,47 @@ app.get("/done",(req,res)=>{
     }
 });
 
+app.get("/favourite", async (req,res)=>{
+    if(req.isAuthenticated()){
+
+        let favouriteFilms=[];
+        const poster=[];
+        const media=[];
+        const id=[];
+        const title=[];
+
+        const search=await User.find({"_id":req.user.id});
+        
+        favouriteFilms = [...search[0].film];
+
+        for(let i=0;i<favouriteFilms.length;i++){
+            media.push(favouriteFilms[i].media);
+            id.push(favouriteFilms[i].filmId);
+            const url = "https://api.themoviedb.org/3/" + favouriteFilms[i].media + "/" + favouriteFilms[i].filmId + "?api_key=" + process.env.API_KEY + "&language=en-US"
+            const favouriteResponse = await axios.get(url);
+            poster.push(favouriteResponse.data.poster_path);
+            let name;
+            if (favouriteFilms[i].media === "movie") {
+                name = favouriteResponse.data.original_title;
+            } else {
+                name = favouriteResponse.data.original_name;
+            }
+            title.push(name);
+        }
+        
+        res.render("favourite",{
+            auth:true,
+            poster:poster,
+            media:media,
+            id:id,
+            title:title
+        });
+
+    }else{
+        res.redirect("/signIn");
+    }
+});
+
 app.post("/movie/:movieId",(req,res)=>{
     res.redirect("/movie/"+req.params.movieId);
 });
@@ -281,6 +322,11 @@ app.post("/favourite",(req,res)=>{
         }
     });
     
+    if(req.body.media==="movie"){
+        res.redirect("/movie/"+req.body.filmId);
+    }else{
+        res.redirect("/show/"+req.body.filmId);
+    }
 
 
 
@@ -298,7 +344,7 @@ app.post("/register",(req,res)=>{
             res.redirect("/signIn");
         }else{
             passport.authenticate("local")(req,res,()=>{
-                res.redirect("/done");
+                res.redirect("/");
             });
         }
     });
@@ -318,7 +364,7 @@ app.post("/login",(req,res)=>{
             res.redirect("/signIn");
         }else{
             passport.authenticate("local", { failureRedirect: '/signIn', failureMessage: true })(req,res,()=>{
-                res.redirect("/done");
+                res.redirect("/");
             });
         }
     });
@@ -333,6 +379,19 @@ app.post("/logOut",(req,res)=>{
             res.redirect("/");
         }
     });
+});
+
+app.post("/delete",(req,res)=>{
+    console.log(req.body);
+
+    User.update({_id:req.user.id},{"$pull":{"film":{"media":req.body.media, "filmId":req.body.id}}}, { safe: true, multi:true },(err, obj)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+
+    res.redirect("/favourite");
+
 });
 
 app.listen(3000,()=>{

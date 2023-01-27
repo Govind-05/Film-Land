@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+:root{
+    --bgColor:#060d17;
+    --searchBgColor:#10161d;
+    --bgCardColor:#383d47;
+    --listItemsColor:#979999;
+    --heading:'Nunito', sans-serif;
+}
+
+.favourite-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 3.5rem;
+}
+
+.favourite-film{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+.favourite-film img{
+    width: 12rem;
+}
+
+.favourite-title{
+    margin-top: 0.2rem;
+    font-family: var(--heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--listItemsColor);
+}
+
+.favourite-container button{
+    background-color: aquamarine;
+    position: absolute;
+    width: 3.5rem;
+    font-size: 1.2rem;
+    font-weight: 900;
+    height: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    color: black;
+    box-shadow: 0 0 5px black;
+    text-shadow: 0 0 2px;
+}
+
+.favourite-container button:hover{
+    cursor: pointer;
+}

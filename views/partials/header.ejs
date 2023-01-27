@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/style/moviePageStyle.css">
     <link rel="stylesheet" href="/style/searchPageStyle.css">
     <link rel="stylesheet" href="/style/registerPageStyle.css">
+    <link rel="stylesheet" href="/style/favouritePageStyle.css">
 </head>
 <body>
     <nav class="navbar">
@@ -19,7 +20,7 @@
         <ul class="navbar-list">
             <li class="list-items"><a href="/">Home</a></li>
             <% if(auth){ %>
-                <li class="list-items"><a href="/favourites">Favourites</a></li>
+                <li class="list-items"><a href="/favourite">Favourites</a></li>
             <% }else{ %>
                 <li class="list-items"><a href="/signIn">Favourites</a></li>
             <% } %>

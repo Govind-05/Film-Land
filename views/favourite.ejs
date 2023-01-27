@@ -1,0 +1,20 @@
+<%- include("partials/header") -%>
+
+    <div class="favourite-container">
+        <% for(let i=0;i<poster.length;i++){ %>
+            <form action="/delete" method="POST" id="deleteForm-<%=i%>">
+                <div class="favourite-film" id="favourite-film-<%=i%>">
+                    <% const imgSrc="https://image.tmdb.org/t/p/original"+poster[i]; %>
+                    <img src=<%= imgSrc %> alt="Poster">
+                    <div class="favourite-title" ><%= title[i] %></div>
+                    <input type="hidden" name="media" value="<%= media[i] %>">
+                    <input type="hidden" name="id" value="<%= id[i] %>">
+                    <button type="submit">X</button>
+                </div>
+            </form>
+        
+        <% } %>
+
+    </div>
+
+<%- include("partials/footer") -%>
