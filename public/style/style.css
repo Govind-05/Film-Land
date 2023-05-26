@@ -130,67 +130,6 @@ body{
     cursor:pointer;
 }
 
-.menu-logo{
-    margin-left: 2rem;
-}
-
-.menu-logo:hover{
-    cursor: pointer;
-}
-
-.menu-info-container{
-    background-color: #0000007a;
-    display: none;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-
-}
-
-.menu-info{
-    background-color: var(--searchBgColor);
-    position: absolute;
-    right: 0;
-    top: 2rem;
-    border-radius: 5px;
-}
-
-.menu-list{
-    list-style: none;
-    font-size: 1.5rem;
-}
-
-.menu-list-items{
-    display: flex;
-    align-items: center;
-    height: 3.5rem;
-    width: 15rem;
-    padding-left: 0.8rem;
-}
-
-.menu-list-items:hover{
-    background-color: #383d47;
-}
-
-.menu-list-items:nth-child(1){
-    margin-top:1rem
-}
-
-.menu-list-items:nth-child(4){
-    margin-bottom: 1rem;
-}
-
-.menu-list-items a{
-    width: 100%;
-    text-decoration: none;
-    color: var(--listItemsColor);
-}
-
-.menu-list-items a:hover{
-    color: white;
-}
 
 /* NAVIGATION BAR ENDS HERE */
 
@@ -333,6 +272,9 @@ body{
 
 .watch-btn-info:hover{
     cursor: pointer;
+    background-color: #104936;
+    outline: none;
+    border: none;
 }
 
 .going-viral-show-container{
@@ -603,25 +545,7 @@ body{
 .hello-title{
     font-family: var(--heading);
     font-size: 2rem;
-}
-
-/* HELLO GREETINGS ENDS HERE */
-
-/* FOOTER */
-
-.footer-contact{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
-    margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
-.footer-contact a{
-    text-decoration: none;
-}
-
-.footer-contact a:hover{
-    color: aqua;
-}
+/* HELLO GREETINGS ENDS HERE */

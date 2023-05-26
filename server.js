@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.set('strictQuery', true);
-mongoose.connect("mongodb://localhost:27017/filmUserDB", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
 const userSchema=new mongoose.Schema({
     username:String,
@@ -192,16 +192,33 @@ app.get("/show/:showId",async (req,res)=>{
 app.get("/search/:showQuery",async (req,res)=>{
 
     const query=req.params.showQuery;
+    console.log(query);
     const searchURL="https://api.themoviedb.org/3/search/multi?api_key="+process.env.API_KEY+"&language=en-US&query="+query+"&page=1&include_adult=true";
 
     const searchResponse=await axios.get(searchURL);
 
     const searchResult=[];
     if(searchResponse.data.results.length!=0){
-        for(let i=0;i<10;i++){
-            searchResult.push(searchResponse.data.results[i]);
+        let incrementValue;
+        if(searchResponse.data.results.length<=10){
+            incrementValue=searchResponse.data.results.length;
+            for(let i=0;i<incrementValue;i++){
+                if(searchResponse.data.results[i].poster_path===null || searchResponse.data.results[i].poster_path===undefined ){
+                    continue;
+                }
+                searchResult.push(searchResponse.data.results[i]);
+            }
+        }else{
+            for(let i=0;i<10;i++){
+                if(searchResponse.data.results[i].poster_path===null || searchResponse.data.results[i].poster_path===undefined){
+                    continue;
+                }
+                searchResult.push(searchResponse.data.results[i]);
+            }
         }
     }
+
+    console.log(searchResult)
 
     let auth=false;
     if(req.isAuthenticated()){

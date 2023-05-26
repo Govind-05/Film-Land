@@ -68,7 +68,7 @@
         <div class="trending-today">
             <div id="prev-trending-today-card"><</div>
             <div id="next-trending-today-card">></div>
-            <% trendingToday.forEach(show=>{ %>
+            <% trendingToday.forEach((show)=>{ %>
                 <% let redirectURL; %>
                 <% if(show.media_type==="tv"){ %>
                     <% redirectURL="/show/"+show.id; %>

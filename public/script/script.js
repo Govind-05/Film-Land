@@ -9,14 +9,6 @@ let counterGenre2=0;
 $(".month span").text(mon);
 $(".date span").text(day);
 
-$("#menu-logo-id").click(()=>{
-    $("#menu-info-id").css("display","block");
-});
-
-$("#menu-info-id").click(()=>{
-    $("#menu-info-id").css("display","none");
-});
-
 $(".going-viral-container").on("mouseenter",()=>{
     $("#prev-going-viral-card").css("opacity","0.85");
     $("#next-going-viral-card").css("opacity","0.85");
