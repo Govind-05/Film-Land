@@ -30,7 +30,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI,() => {
+    console.log("Mongo connected");
+});
 
 const userSchema=new mongoose.Schema({
     username:String,
