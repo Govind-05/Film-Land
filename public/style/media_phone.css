@@ -244,4 +244,22 @@
         margin-bottom: 2rem;
     }
 
+    /*Favourite Page Style  */
+
+    .favourite-film img{
+        width: 7rem;
+    }
+
+    .favourite-title{
+        max-width: 7rem;
+    }
+
+    .show-cover img{
+        width: 7rem;
+    }
+
+    .show-cover span{
+        max-width: 7rem;
+    }
+
 }

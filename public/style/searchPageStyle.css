@@ -34,6 +34,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--listItemsColor);
+    max-width: 12rem;
 }
 
 .no-search{
