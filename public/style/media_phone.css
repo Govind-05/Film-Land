@@ -1,5 +1,5 @@
 @media (max-width:542px) {
-    .navbar{
+    .navbar {
         justify-content: space-around;
     }
 
@@ -34,10 +34,10 @@
     .calender {
         margin-top: 5rem;
         display: flex;
-    justify-content: center;
+        justify-content: center;
     }
 
-    .calender>:first-child{
+    .calender>:first-child {
         margin-left: 0;
     }
 
@@ -118,60 +118,126 @@
 
     /* Trending Today */
 
-    .trending-today-container{
+    .trending-today-container {
         width: 100vw;
         overflow-x: hidden;
     }
 
-    .trending-today-heading{
+    .trending-today-heading {
         margin-left: 1rem;
     }
 
-    .trending-today{
+    .trending-today {
         overflow-x: scroll;
     }
 
-    #prev-trending-today-card{
+    #prev-trending-today-card {
         display: none;
     }
-    #next-trending-today-card{
+
+    #next-trending-today-card {
         display: none;
     }
-    .trending-today-card{
+
+    .trending-today-card {
         width: 80vw;
         margin: 0 1rem 0 1.5rem;
     }
 
-    .trending-today-card img{
+    .trending-today-card img {
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 1rem;
     }
 
-    .trending-today-card-info .title-info{
+    .trending-today-card-info .title-info {
         max-width: 11rem;
         font-size: 1.5rem;
         margin-top: 1.5rem;
     }
 
-    .trending-today-card-info .watch-btn-info{
+    .trending-today-card-info .watch-btn-info {
         margin-top: auto;
     }
 
-    .genre-container{
+    .genre-container {
         overflow-x: scroll;
     }
 
-    #prev-genre-1-card{
+    #prev-genre-1-card {
         display: none;
     }
-    #next-genre-1-card{
+
+    #next-genre-1-card {
         display: none;
     }
-    #prev-genre-2-card{
+
+    #prev-genre-2-card {
         display: none;
     }
-    #next-genre-2-card{
+
+    #next-genre-2-card {
         display: none;
+    }
+
+
+    /* Movie Page */
+    .background-img-container {
+        display: none;
+    }
+
+    .movie-info-container {
+        flex-direction: column-reverse;
+        margin: 3rem 0 0 0;
+        position: static;
+        transform: none;
+        width: 100%;
+    }
+
+    .detailed-movie-info {
+        margin: 0 1rem 0 1rem;
+    }
+
+    .trailer iframe {
+        width: 100%;
+        height: 25vh;
+    }
+
+    .recommendation-container {
+        width: 100%;
+        overflow-x: scroll;
+        margin-bottom: 2rem;
+
+    }
+
+    .recommendation-title{
+        font-size: 1.4rem;
+    }
+
+    .trailer-box{
+        width: 100%;
+    }
+    .trailer-box span{
+        font-size: 2rem;
+    }
+
+    #prev-recommended-card{
+        display: none;
+    }
+
+    #next-recommended-card{
+        display: none;
+    }
+
+    .short-movie-info {
+        width: 100%;
+    }
+
+    .movie-info-poster{
+        display: none;
+    }
+
+    .favourite-btn-container{
+        margin-bottom: 2rem;
     }
 
 }
