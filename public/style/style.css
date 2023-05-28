@@ -21,6 +21,20 @@ body{
     background-color: var(--bgColor);
 }
 
+body::-webkit-scrollbar{
+    width: 10px;
+
+}
+
+body::-webkit-scrollbar-track{
+    background: #222831;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: #393E46;
+    border-radius: 2px;
+}
+
 /* NAVIGATION BAR STARTS HERE */
 
 .navbar{
