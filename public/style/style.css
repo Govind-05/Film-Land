@@ -75,17 +75,22 @@ body{
     color: white;
 }
 
+.search-bar-mobile{
+    display: none;
+}
+
 .search-bar{
-    margin-left: 4.5rem;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    width: 55rem;
+    width: 60vw;
     justify-content:flex-start;
     align-items: center;
 }
 
 .search-bar input{
-    background: url("../images/SearchIcon.png") no-repeat 1.5% center ;
-    padding-left: 3rem;
+    background: url("../images/SearchIcon.png") no-repeat 1% center ;
+    padding-left: 4%;
     width: 100%;
     height: 2rem;
     border: none;
@@ -102,7 +107,7 @@ body{
     background-color: #1c252f;
     border: none;
     border-radius: 3.5px;
-    margin-left: 2rem;    
+    margin-right: 1.2rem;    
     font-family: 'Nunito', sans-serif;
     font-size: 0.85rem;
 }
@@ -118,7 +123,7 @@ body{
     background-color: #1c252f;
     border: none;
     border-radius: 3.5px;
-    margin-left: 2rem;    
+    margin-right: 1.2rem;    
     font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     /* font-weight: 700; */
@@ -179,11 +184,11 @@ body{
 .trending-movies-container{
     display: flex;
     margin-top: 3rem;
+    justify-content: space-around;
 }
 
 .going-viral-container{
     width: 43vw;
-    margin-left: 4rem;
     display: flex;
     overflow: hidden;
     position: relative;
@@ -279,7 +284,6 @@ body{
 
 .going-viral-show-container{
     width: 43vw;
-    margin-left: 4rem;
     display: flex;
     overflow: hidden;
     position: relative;

@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/style/searchPageStyle.css">
     <link rel="stylesheet" href="/style/registerPageStyle.css">
     <link rel="stylesheet" href="/style/favouritePageStyle.css">
+    <link rel="stylesheet" href="/style/media_phone.css">
+    <link rel="stylesheet" href="/style/media_tablet.css">
+
 </head>
 <body>
     <nav class="navbar">
@@ -40,3 +43,7 @@
         <% } %>
 
     </nav>
+
+    <form class="search-bar search-bar-mobile" action="/search" method="POST">
+        <input type="text" placeholder="Search for movies or TV shows" name="search" autocomplete="off">
+    </form>
